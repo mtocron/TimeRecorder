@@ -69,9 +69,9 @@ namespace TimeRecorder.Driver.CsvDriver
                 switch(taskUnit.TaskCategory)
                 {
                     case TaskCategory.Develop:
-                        return productName + " 開発";
+						return productName;
 
-                    case TaskCategory.Maintain:
+					case TaskCategory.Maintain:
                     case TaskCategory.Introduce:
                         return productName + " 保守";
 
