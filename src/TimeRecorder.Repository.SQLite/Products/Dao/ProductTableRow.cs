@@ -14,9 +14,13 @@ namespace TimeRecorder.Repository.SQLite.Products.Dao
 
         public string ShortName { get; set; }
 
-        public Product ToDomainObject()
-        {
-            return new Product(new Identity<Product>(Id), Name, ShortName);
-        }
+		public int? Hide { get; set; }
+
+		public int? DispOrder { get; set; }
+
+		public Product ToDomainObject()
+		{
+			return new Product(new Identity<Product>(Id), Name, ShortName, Hide.HasValue && Hide.Value == 1, DispOrder ?? 0);
+		}
     }
 }

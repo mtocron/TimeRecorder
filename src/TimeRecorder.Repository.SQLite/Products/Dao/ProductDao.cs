@@ -22,6 +22,8 @@ SELECT
   id
   , name
   , shortname
+  , hide
+  , disporder
 FROM
   products
 ";

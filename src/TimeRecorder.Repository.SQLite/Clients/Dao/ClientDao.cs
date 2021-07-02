@@ -22,6 +22,7 @@ SELECT
   id
   , name
   , kananame
+  , hide
 FROM
   clients
 ";

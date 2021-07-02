@@ -16,13 +16,16 @@ namespace TimeRecorder.Domain.Domain.Clients
 
         public string KanaName { get; set; }
 
-        public static Client Empty => new Client(Identity<Client>.Empty, "未選択", "ミセンタク");
+        public bool Hide { get; set; }
 
-        public Client(Identity<Client> id, string name, string kanaName)
-        {
+        public static Client Empty => new Client(Identity<Client>.Empty, "未選択", "ミセンタク", false);
+
+		public Client(Identity<Client> id, string name, string kanaName, bool hide)
+		{
             Id = id;
             Name = name;
             KanaName = kanaName;
+            Hide = hide;
         }
 
         protected override IEnumerable<object> GetIdentityValues()

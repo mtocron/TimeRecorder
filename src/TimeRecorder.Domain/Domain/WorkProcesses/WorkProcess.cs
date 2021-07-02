@@ -17,21 +17,27 @@ namespace TimeRecorder.Domain.Domain.WorkProcesses
         /// </summary>
         public string Title { get; }
 
-        /// <summary>
-        /// Domain層内のみで、titleのみでの生成を許可する
-        /// </summary>
-        /// <param name="title"></param>
-        internal WorkProcess(string title)
-            : this(Identity<WorkProcess>.Temporary, title) { }
+		public bool Hide { get; }
+
+		public int DispOrder { get; }
+
+		/// <summary>
+		/// Domain層内のみで、titleのみでの生成を許可する
+		/// </summary>
+		/// <param name="title"></param>
+		internal WorkProcess(string title)
+			: this(Identity<WorkProcess>.Temporary, title, false, 0) { }
 
 
-        public WorkProcess(Identity<WorkProcess> identity, string title)
-        {
-            Id = identity;
-            Title = title;
-        }
+		public WorkProcess(Identity<WorkProcess> identity, string title, bool hide, int dispOrder)
+		{
+			Id = identity;
+			Title = title;
+			Hide = hide;
+			DispOrder = dispOrder;
+		}
 
-        protected override IEnumerable<object> GetIdentityValues()
+		protected override IEnumerable<object> GetIdentityValues()
         {
             yield return Id;
         }

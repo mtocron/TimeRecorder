@@ -16,13 +16,19 @@ namespace TimeRecorder.Domain.Domain.Products
 
         public string ShortName { get; set; }
 
-        public static Product Empty => new Product(Identity<Product>.Empty, "未選択", "ミセンタク");
+        public bool Hide { get; set; }
 
-        public Product(Identity<Product> id, string name, string shortName)
-        {
+        public int DispOrder { get; set; }
+
+		public static Product Empty => new Product(Identity<Product>.Empty, "未選択", "ミセンタク", false, 0);
+
+		public Product(Identity<Product> id, string name, string shortName, bool hide, int dispOrder)
+		{
             Id = id;
             Name = name;
             ShortName = shortName;
+            Hide = hide;
+            DispOrder = dispOrder;
         }
 
         protected override IEnumerable<object> GetIdentityValues()

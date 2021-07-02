@@ -14,10 +14,12 @@ namespace TimeRecorder.Repository.SQLite.Clients.Dao
 
         public string KanaName { get; set; }
 
-        public Client ToDomainObject()
+		public int? Hide { get; set; }
+
+		public Client ToDomainObject()
         {
-            return new Client(new Identity<Client>(Id), Name, KanaName);
-        }
+            return new Client(new Identity<Client>(Id), Name, KanaName, Hide.HasValue && Hide.Value == 1);
+		}
 
     }
 }

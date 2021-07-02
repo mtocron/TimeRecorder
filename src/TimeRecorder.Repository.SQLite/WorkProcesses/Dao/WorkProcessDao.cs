@@ -21,6 +21,8 @@ namespace TimeRecorder.Repository.SQLite.WorkProcesses.Dao
 SELECT
   id
   , title
+  , hide
+  , disporder
 FROM
   processes
 ";

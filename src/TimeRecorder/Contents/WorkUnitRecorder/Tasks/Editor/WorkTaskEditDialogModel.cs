@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TimeRecorder.Domain.Domain.Clients;
 using TimeRecorder.Domain.Domain.Products;
@@ -25,21 +26,21 @@ namespace TimeRecorder.Contents.WorkUnitRecorder.Tasks.Editor
 
         public WorkProcess[] GetProcesses()
         {
-            return _ProcessUseCase.GetProcesses();
+            return _ProcessUseCase.GetProcesses().Where(p => p.Hide == false).OrderBy(p => p.DispOrder).ThenBy(p => p.Id).ToArray();
         }
 
         public Client[] GetClients()
-        {
-            var list = new List<Client> { Client.Empty };
-            list.AddRange(_ClientUseCase.GetClients());
-            return list.ToArray();
-        }
+		{
+			var list = new List<Client> { Client.Empty };
+			list.AddRange(_ClientUseCase.GetClients().Where(c => c.Hide == false));
+			return list.ToArray();
+		}
 
         public Product[] GetProducts()
         {
             var list = new List<Product> { Product.Empty };
-            list.AddRange(_ProductUseCase.GetProducts());
-            return list.ToArray();
+			list.AddRange(_ProductUseCase.GetProducts().Where(p => p.Hide == false).OrderBy(p => p.DispOrder).ThenBy(p => p.Id));
+			return list.ToArray();
         }
     }
 }
